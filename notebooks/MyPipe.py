@@ -8,10 +8,11 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import r2_score, mean_absolute_error
 
 class MyPipe():
-    def __init__(self):
+    def __init__(self, steps=[('scaler', StandardScaler()),('regression', LinearRegression())]):
+        self.steps = steps
         self.history = []
         self.data = None
-        self.pipe = None
+        self.pipe = Pipeline(steps=self.steps)
     
     def define_data(self, data: pd.DataFrame):
         self.data = data
@@ -20,8 +21,8 @@ class MyPipe():
         if not(False in (self.data.columns==new_data.columns)):
             self.data = pd.concat([self.data, new_data], ignore_index=True)
     
-    def make_pipe(self, steps=[('scaler', StandardScaler()),('regression', LinearRegression())]):
-        self.pipe = Pipeline(steps=steps)
+    # def make_pipe(self, steps=[('scaler', StandardScaler()),('regression', LinearRegression())]):
+    #     self.pipe = Pipeline(steps=steps)
 
     def fit(self, x, y):
         self.pipe.fit(x,y)
@@ -43,21 +44,22 @@ class MyPipe():
     def get_score(self, x, y):
         return self.pipe.score(x, y)
     
-    def plot_history(self):
+    def plot_history(self, trendline=False):
         df = pd.DataFrame(self.history)
         fig, axs = plt.subplots(2, 1)
         fig.tight_layout()
-        xx = np.arange(len(df.index))
-        z1 = np.polyfit(xx, np.array(df['r2']), 1)
-        p1 = np.poly1d(z1)
-        z2 = np.polyfit(xx, np.array(df['MAE']), 1)
-        p2 = np.poly1d(z2)
         axs[0].plot(df['r2'], color='C0')
-        axs[0].plot(xx, p1(xx), color='C0', linestyle='--')
         axs[0].set_ylabel('r2')
         axs[1].plot(df['MAE'], color='C1')
-        axs[1].plot(xx, p2(xx), color='C1', linestyle='--')
         axs[1].set_ylabel('MAE')
         for ax in axs:
             ax.grid(True)
             ax.set_xlabel('n')
+        if trendline:
+            xx = np.arange(len(df.index))
+            z1 = np.polyfit(xx, np.array(df['r2']), 1)
+            p1 = np.poly1d(z1)
+            z2 = np.polyfit(xx, np.array(df['MAE']), 1)
+            p2 = np.poly1d(z2)
+            axs[0].plot(xx, p1(xx), color='C0', linestyle='--')
+            axs[1].plot(xx, p2(xx), color='C1', linestyle='--')
