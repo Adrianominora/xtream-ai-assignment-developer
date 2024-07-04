@@ -1,8 +1,8 @@
+import joblib
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.linear_model import LinearRegression
-# from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import r2_score, mean_absolute_error
@@ -20,9 +20,6 @@ class MyPipe():
     def augment_data(self, new_data: pd.DataFrame):
         if not(False in (self.data.columns==new_data.columns)):
             self.data = pd.concat([self.data, new_data], ignore_index=True)
-    
-    # def make_pipe(self, steps=[('scaler', StandardScaler()),('regression', LinearRegression())]):
-    #     self.pipe = Pipeline(steps=steps)
 
     def fit(self, x, y):
         self.pipe.fit(x,y)
@@ -63,3 +60,6 @@ class MyPipe():
             p2 = np.poly1d(z2)
             axs[0].plot(xx, p1(xx), color='C0', linestyle='--')
             axs[1].plot(xx, p2(xx), color='C1', linestyle='--')
+
+    def dump(self, path):
+        joblib.dump(self.pipe, path)
