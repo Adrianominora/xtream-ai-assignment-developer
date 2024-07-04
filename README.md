@@ -90,17 +90,17 @@ To asess all the challenges, the following libraries are required:
 
 ### Challenge 1
 
-You can just run notebook `C1.ipynb`, that implements the pipeline with the linear model.
-Section C1.1 illustrates how to use the class `MyPipe` with a static dataset, without any data acquisition procedure.
-Section C1.2 illustrates how to use the class `MyPipe` for data acquisition. I assumed that data come in batch (you can adjust the batch size) and that an initial dataset is known (half of the provided dataset).
+You can just run notebook `C1.ipynb`, that implements the pipeline with the linear model.\
+Section C1.1 illustrates how to use the class `MyPipe` with a static dataset, without any data acquisition procedure.\
+Section C1.2 illustrates how to use the class `MyPipe` for data acquisition. I assumed that data come in batch (you can adjust the batch size) and that an initial dataset is known (half of the provided dataset).\
 At each new fit, the entire pipeline is saved in the `data/models_history/linear_model` folder.
 
 ### Challenge 2
 
-Also here you can just run notebook `C2.ipynb`, that implements the pipeline with XGBoost model.
-Section C2.1 illustrates how to use the class `MyPipe` with a static dataset and the XGBoost model.
-Section C2.2 illustrate show to use the class `MyPipe` with a static dataset and the XGBoost model with optimization via `optuna`.
-Section C2.3 illustrates how to use the class `MyPipe` for data acquisition and the optimized XGBoost model. I assumed that data come in batch (you can adjust the batch size) and that an initial dataset is known (half of the provided dataset).
+Also here you can just run notebook `C2.ipynb`, that implements the pipeline with XGBoost model.\
+Section C2.1 illustrates how to use the class `MyPipe` with a static dataset and the XGBoost model.\
+Section C2.2 illustrate show to use the class `MyPipe` with a static dataset and the XGBoost model with optimization via `optuna`.\
+Section C2.3 illustrates how to use the class `MyPipe` for data acquisition and the optimized XGBoost model. I assumed that data come in batch (you can adjust the batch size) and that an initial dataset is known (half of the provided dataset).\
 At each new fit, the entire pipeline is saved in the `data/models_history/xgb_opt_model` folder.
 
 ### Challenge 3
