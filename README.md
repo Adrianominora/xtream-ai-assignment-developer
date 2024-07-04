@@ -68,4 +68,51 @@ Observability is key. Save every request and response made to the APIs to a **pr
 ---
 
 ## How to run
-Please fill this section as part of the assignment.
+
+Challenges 1 and 2 can be checked by running notebooks `C1.ipynb` and `C2.ipynb`. These notebooks rely on the class `MyPipe` defined in `MyPipe.py`.
+The class `MyPipe` mirrors the basic functionalities of the `Pipeline` class from Scikit-learn, with some customization usefull for the problem at hand.
+
+Challenges 3 and 4 are based on `FastAPI` framework and can be checked by running some commands in the terminal. Notebook `C3.ipynb` contains a back-end version of the API methods and is just for testing
+
+### Labraries and dependencies
+To asess all the challenges, the following libraries are required:
+* joblib
+* pandas
+* numpy
+* matplotlib
+* sklearn
+* xgboost
+* optuna
+* typing
+* datetime
+* io
+* fastapi
+
+### Challenge 1
+
+You can just run notebook `C1.ipynb`, that implements the pipeline with the linear model.
+Section C1.1 illustrates how to use the class `MyPipe` with a static dataset, without any data acquisition procedure.
+Section C1.2 illustrates how to use the class `MyPipe` for data acquisition. I assumed that data come in batch (you can adjust the batch size) and that an initial dataset is known (half of the provided dataset).
+At each new fit, the entire pipeline is saved in the `data/models_history/linear_model` folder.
+
+### Challenge 2
+
+Also here you can just run notebook `C2.ipynb`, that implements the pipeline with XGBoost model.
+Section C2.1 illustrates how to use the class `MyPipe` with a static dataset and the XGBoost model.
+Section C2.2 illustrate show to use the class `MyPipe` with a static dataset and the XGBoost model with optimization via `optuna`.
+Section C2.3 illustrates how to use the class `MyPipe` for data acquisition and the optimized XGBoost model. I assumed that data come in batch (you can adjust the batch size) and that an initial dataset is known (half of the provided dataset).
+At each new fit, the entire pipeline is saved in the `data/models_history/xgb_opt_model` folder.
+
+### Challenge 3
+
+The REST API is built by means of FastAPI. The API methods and logics are stored in `myapi.py` and they can be run by means the uvicorn module. Here are the steps required to test it:
+1. Open the terminal and ensure that the current directory is the `notebooks` folder;
+2. Run the following command: `uvicorn myapi:app --reload`;
+3. Open your browser and navigate to [here] http://127.0.0.1:8000/docs;
+4. Send you GET request using the FastAPI inderface by selecting a method and clicking on `Try it out`.
+
+If any problem arise, notebook `C3.ipynb` presents a back-end version of the API methods so that the logics of the API can be tested.
+
+### Challenge 4
+
+All requests made both by FastAPI interactive docs and by the notebook will be stored in the file `call_log.json` in the `api_calls` folder.
