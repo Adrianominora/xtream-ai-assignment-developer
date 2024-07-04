@@ -70,7 +70,7 @@ Observability is key. Save every request and response made to the APIs to a **pr
 ## How to run
 
 Challenges 1 and 2 can be checked by running notebooks `C1.ipynb` and `C2.ipynb`. These notebooks rely on the class `MyPipe` defined in `MyPipe.py`.
-The class `MyPipe` mirrors the basic functionalities of the `Pipeline` class from Scikit-learn, with some customization usefull for the problem at hand.
+The class `MyPipe` mirrors the basic functionalities of the `Pipeline` class from Scikit-learn, with some customizations usefull for the problem at hand.
 
 Challenges 3 and 4 are based on `FastAPI` framework and can be checked by running some commands in the terminal. Notebook `C3.ipynb` contains a back-end version of the API methods and is just for testing
 
